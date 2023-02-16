@@ -182,7 +182,7 @@ app.post('/client/webhook', (req, res) => {
       }
       console.log(stdout);
       mailTransporter({ 
-          subject: 'The admin app build process are successfull!',
+          subject: 'The client app build process are successfull!',
           html: `<h2>Greetings from Abdurrahim's CI|CD app, look at your site! :)</h2>`
       })
       res.status(200).send('successfull');
