@@ -3,7 +3,7 @@ const exec = require('child_process').exec;
 const mailTransporter = require('./transporter');
 const app = express();
 
-app.post('api/webhook', (req, res)=> {
+app.post('/api/webhook', (req, res)=> {
     exec('cd ~/backendURS && git pull', (err, stdout, stderr) => {
         if (err) {
             console.error(err);
@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
     res.send('app is running');
 })
 
-app.post('admin/webhook', (req, res) => {
+app.post('/admin/webhook', (req, res) => {
     exec('cd ~/URSadmin && git pull', (err, stdout, stderr) => {
           if (err) {
             console.error(err);
