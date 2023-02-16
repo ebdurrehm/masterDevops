@@ -43,6 +43,10 @@ app.post('api/webhook', (req, res)=> {
     })
 })
 
+app.get('/', (req, res) => {
+    res.send('app is running');
+})
+
 app.post('admin/webhook', (req, res) => {
     exec('cd ~/URSadmin && git pull', (err, stdout, stderr) => {
           if (err) {
