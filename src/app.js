@@ -7,7 +7,7 @@ app.post('/api/webhook', (req, res)=> {
     exec('cd ~/backendURS && git pull', (err, stdout, stderr) => {
         if (err) {
             console.error(err);
-            return res.status(500);
+            return res.status(500).send('error');
         }
         if (stderr) {
             console.log(stderr);
@@ -22,7 +22,7 @@ app.post('/api/webhook', (req, res)=> {
         exec('pm2 restart api', (err, stdout, stderr) => {
             if (err) {
                 console.log(err);
-                return;
+                return res.status(500).send('error');
             }
             if (stderr) {
                 console.error(stderr);
@@ -38,7 +38,7 @@ app.post('/api/webhook', (req, res)=> {
                 html: `<h2>Greetings from Abdurrahim's CI|CD app, look at your site! :)</h2>`
             })
         
-             return res.status(200);
+             return res.status(200).send('successfull');
         })
     })
 })
@@ -51,7 +51,7 @@ app.post('/admin/webhook', (req, res) => {
     exec('cd ~/URSadmin && git pull', (err, stdout, stderr) => {
           if (err) {
             console.error(err);
-            return res.status(500);
+            return res.status(500).send('errror');
         }
         if (stderr) {
             console.log(stderr);
@@ -66,7 +66,7 @@ app.post('/admin/webhook', (req, res) => {
         exec('cd ~/URSadmin && npm run build', (err, stdout, stderr) => {
               if (err) {
             console.error(err);
-            return res.status(500);
+            return res.status(500).send('error');
         }
         if (stderr) {
             console.log(stderr);
@@ -81,7 +81,7 @@ app.post('/admin/webhook', (req, res) => {
         exec('cd ~/URSadmin && sudo mv build /var/www && cd /var/www', (err, stdout, stderr) => {
               if (err) {
             console.error(err);
-            return res.status(500);
+            return res.status(500).send('error');
         }
         if (stderr) {
             console.log(stderr);
@@ -97,7 +97,7 @@ app.post('/admin/webhook', (req, res) => {
         exec('cd /var/www && sudo rm -rf admin && sudo mv build admin', (err, stdout, stderr) => {
               if (err) {
             console.error(err);
-            return res.status(500);
+            return res.status(500).send('error');
         }
         if (stderr) {
             console.log(stderr);
@@ -112,6 +112,7 @@ app.post('/admin/webhook', (req, res) => {
             name: 'The build process are successfull!',
             html: `<h2>Greetings from Abdurrahim's CI|CD app, look at your site! :)</h2>`
         })
+        res.status(200).send('successfull');
         })
         })
         })
