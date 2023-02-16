@@ -1,5 +1,6 @@
 const express = require('express');
 const exec = require('child_process').exec;
+const ck = require('ckey');
 const mailTransporter = require('./transporter');
 const app = express();
 
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/admin/webhook', (req, res) => {
-    exec('cd ~/URSadmin && git pull', (err, stdout, stderr) => {
+    exec(`cd ~/URSadmin && git pull`, (err, stdout, stderr) => {
           if (err) {
             console.error(err);
             return res.status(500).send('errror');
@@ -78,7 +79,7 @@ app.post('/admin/webhook', (req, res) => {
         }
         console.log(stdout);
 
-        exec('cd ~/URSadmin && sudo mv build /var/www && cd /var/www', (err, stdout, stderr) => {
+        exec(`cd ~/URSadmin && echo ${ck.SERVER_PASSWRD} | sudo -S mv build /var/www && cd /var/www`, (err, stdout, stderr) => {
               if (err) {
             console.error(err);
             return res.status(500).send('error');
@@ -94,7 +95,7 @@ app.post('/admin/webhook', (req, res) => {
         console.log(stdout);
         // send email to user
 
-        exec('cd /var/www && sudo rm -rf admin && sudo mv build admin', (err, stdout, stderr) => {
+        exec(`cd /var/www && echo ${ck.SERVER_PASSWRD} | sudo -S rm -rf admin && sudo mv build admin`, (err, stdout, stderr) => {
               if (err) {
             console.error(err);
             return res.status(500).send('error');
@@ -150,7 +151,7 @@ app.post('/client/webhook', (req, res) => {
         }
         console.log(stdout);
 
-        exec('cd ~/URSwebsite && sudo mv build /var/www && cd /var/www', (err, stdout, stderr) => {
+        exec(`cd ~/URSwebsite && echo ${ck.SERVER_PASSWRD} | sudo -S mv build /var/www && cd /var/www`, (err, stdout, stderr) => {
               if (err) {
             console.error(err);
             return res.status(500).send('error');
@@ -166,7 +167,7 @@ app.post('/client/webhook', (req, res) => {
         console.log(stdout);
         // send email to user
 
-        exec('cd /var/www && sudo rm -rf client && sudo mv build client', (err, stdout, stderr) => {
+        exec(`cd /var/www && echo ${ck.SERVER_PASSWRD} | sudo -S rm -rf client && sudo mv build client`, (err, stdout, stderr) => {
               if (err) {
             console.error(err);
             return res.status(500).send('error');
