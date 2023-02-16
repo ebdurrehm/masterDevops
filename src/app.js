@@ -56,11 +56,11 @@ app.post('/admin/webhook', (req, res) => {
         }
         if (stderr) {
             console.log(stderr);
-            mailTransporter({ 
-                subject: 'The build process failed',
-                html: `<h2>The build process failed</h2><p>${stderr}</p>`
-            })
-            return res.status(500).send('error in git pull command');
+            // mailTransporter({ 
+            //     subject: 'The build process failed',
+            //     html: `<h2>The build process failed</h2><p>${stderr}</p>`
+            // })
+            // return res.status(500).send('error in git pull command');
         }
         console.log(stdout);
 
@@ -71,11 +71,11 @@ app.post('/admin/webhook', (req, res) => {
         }
         if (stderr) {
             console.log(stderr);
-            mailTransporter({ 
-                subject: 'The build process failed',
-                html: `<h2>The admin app build process failed</h2><p>${stderr}</p>`
-            })
-            return res.status(500).send('error in build command');
+            // mailTransporter({ 
+            //     subject: 'The build process failed',
+            //     html: `<h2>The admin app build process failed</h2><p>${stderr}</p>`
+            // })
+            // return res.status(500).send('error in build command');
         }
         console.log(stdout);
 
@@ -102,11 +102,11 @@ app.post('/admin/webhook', (req, res) => {
         }
         if (stderr) {
             console.log(stderr);
-            mailTransporter({ 
-                subject: 'The admin app build process failed',
-                html: `<h2>The build process failed</h2><p>${stderr}</p>`
-            })
-            return res.status(500).send('error in replacing admin folder with the build');
+            // mailTransporter({ 
+            //     subject: 'The admin app build process failed',
+            //     html: `<h2>The build process failed</h2><p>${stderr}</p>`
+            // })
+            // return res.status(500).send('error in replacing admin folder with the build');
         }
         console.log(stdout);
         mailTransporter({ 
