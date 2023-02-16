@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 function mailTransporter(data) {
     transporter.sendMail({
         from: 'backend@ursdanismanlik.com',
-        to: [ 'ebdurrehm5@gmail.com', 'mammadovramin02@gmail.com' ],
+        to: [ 'ebdurrehim5@gmail.com', 'mammadovramin02@gmail.com' ],
         subject: data.subject,
         html: data.html,
     }, (error, info) => {
