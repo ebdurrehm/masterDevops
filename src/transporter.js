@@ -3,7 +3,7 @@ const ck = require('ckey');
 
 const transporter = nodemailer.createTransport({
     host: 'mail.ursdanismanlik.com',
-    port: '587',
+    port: '465',
     auth: {
         user: 'backend@ursdanismanlik.com',
         pass: ck.EMAIL_PASSWRD,
