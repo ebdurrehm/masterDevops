@@ -136,7 +136,7 @@ app.post('/client/webhook', (req, res) => {
       }
       console.log(stdout);
 
-      exec('cd ~/URSwebsite && npm run build', (err, stdout, stderr) => {
+      exec(`cd ~/URSwebsite && npm run build`, (err, stdout, stderr) => {
             if (err) {
           console.error(err);
           return res.status(500).send('error');
