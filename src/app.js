@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/admin/webhook', (req, res) => {
-    exec(`cd ~/URSadmin && git pull`, (err, stdout, stderr) => {
+    exec(`cd ~/URSadmin && git pull && npm install`, (err, stdout, stderr) => {
           if (err) {
             console.error(err);
             return res.status(500).send('errror');
